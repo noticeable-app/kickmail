@@ -1,0 +1,48 @@
+{
+  "author": "Noticeable Team <support@noticeable.io>",
+  "bugs": {
+    "url": "https://github.com/noticeable-app/kickmail/issues"
+  },
+  "dependencies": {
+  },
+  "description": "Forbid disposable email addresses with ease.",
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.31.0",
+    "@typescript-eslint/parser": "^5.31.0",
+    "eslint": "^8.20.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "prettier": "^2.7.1",
+    "typescript": "^4.7.4"
+  },
+  "files": [
+    "dist/**"
+  ],
+  "homepage": "https://github.com/noticeable-app/kickmail#readme",
+  "keywords": [
+    "disposable",
+    "disposable emails",
+    "filter disposable",
+    "kickmail"
+  ],
+  "license": "MIT",
+  "main": "./dist/index.js",
+  "module": "./dist/esm/index.js",
+  "name": "@noticeable-app/kickmail",
+  "private": false,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/noticeable-app/kickmail.git"
+  },
+  "scripts": {
+    "build:cjs": "./node_modules/.bin/tsc -m commonjs",
+    "build:mjs": "./node_modules/.bin/tsc -m es2015 -d --moduleResolution node --outDir dist/esm",
+    "build": "yarn clean && yarn lint && yarn build:mjs && yarn build:cjs",
+    "clean": "rm -rf dist/",
+    "lint": "./node_modules/.bin/eslint src/main/typescript/**/*",
+    "lint:fix": "./node_modules/.bin/eslint src/main/typescript/**/* --fix",
+    "prepare": "yarn clean && yarn build"
+  },
+  "types": "./dist/esm/index.d.ts",
+  "version": "0.2.0"
+}
