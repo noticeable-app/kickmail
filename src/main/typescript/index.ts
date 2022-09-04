@@ -32,7 +32,9 @@ async function refresh() {
  * @returns True if the email is disposable, false otherwise.
  */
 function isDisposable(email: string): boolean {
-    return !DENY_LIST.has(email.split('@')[2]);
+    const chunks = email.split('@');
+    const domain = chunks[1];
+    return DENY_LIST.has(domain);
 }
 
 /**

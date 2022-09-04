@@ -23,6 +23,10 @@ describe('kickmail', () => {
         expect(isDisposable('john.doe@acme.com')).toBe(false);
     });
 
+    test('non disposable email pass detection', async () => {
+        expect(isDisposable('estelle+test@gmail.com')).toBe(false);
+    });
+
     test('valid email address pass verification', async () => {
         expect(isValid('john.doe@acme.com')).toBe(true);
     });
