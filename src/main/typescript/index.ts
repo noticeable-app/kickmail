@@ -44,4 +44,4 @@ function isValid(email: string): boolean {
     return EMAIL_REGEXP.test(email);
 }
 
-export { isDisposable, isValid, refresh };
+export { init, isDisposable, isValid, refresh };
