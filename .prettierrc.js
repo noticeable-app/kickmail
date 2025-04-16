@@ -1,7 +1,9 @@
-module.exports = {
-    semi: true,
-    trailingComma: 'all',
-    singleQuote: true,
-    printWidth: 120,
-    tabWidth: 4,
+export default {
+  organizeImportsSkipDestructiveCodeActions: true,
+  plugins: ['prettier-plugin-organize-imports'],
+  printWidth: 120,
+  semi: false,
+  singleQuote: true,
+  tabWidth: 4,
+  trailingComma: 'all'
 }

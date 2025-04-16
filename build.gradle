@@ -12,10 +12,12 @@ sourceCompatibility = 21
 targetCompatibility = 21
 
 dependencies {
-    implementation 'dnsjava:dnsjava:3.5.3'
-    implementation 'com.sanctionco.jmail:jmail:1.6.2'
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.10.2'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.10.2'
+    implementation 'dnsjava:dnsjava:3.6.3'
+    implementation 'com.sanctionco.jmail:jmail:2.0.0'
+
+    testImplementation(platform('org.junit:junit-bom:5.12.2'))
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
 
 publishing {
