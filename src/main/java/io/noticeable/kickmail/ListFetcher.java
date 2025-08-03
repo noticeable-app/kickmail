@@ -3,7 +3,7 @@ package io.noticeable.kickmail;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.net.URL;
+import java.net.URI;
 import java.net.URLConnection;
 import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
@@ -17,7 +17,7 @@ public final class ListFetcher {
     public Set<String> fetch(final String url) throws IOException {
         final HashSet<String> domains = new HashSet<>();
 
-        final URLConnection connection = new URL(url).openConnection();
+        final URLConnection connection = URI.create(url).toURL().openConnection();
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream(), StandardCharsets.UTF_8))) {
             String line;
             while ((line = reader.readLine()) != null) {
