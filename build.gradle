@@ -1,5 +1,5 @@
 plugins {
-    id 'com.gradleup.shadow' version '9.2.2'
+    id 'com.gradleup.shadow' version '9.4.1'
     id 'java-library'
     id 'maven-publish'
 }
@@ -15,10 +15,10 @@ java {
 }
 
 dependencies {
-    implementation 'dnsjava:dnsjava:3.6.3'
+    implementation 'dnsjava:dnsjava:3.6.4'
     implementation 'com.sanctionco.jmail:jmail:2.1.0'
 
-    testImplementation(platform('org.junit:junit-bom:6.0.1'))
+    testImplementation(platform('org.junit:junit-bom:6.0.3'))
     testImplementation 'org.junit.jupiter:junit-jupiter'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
