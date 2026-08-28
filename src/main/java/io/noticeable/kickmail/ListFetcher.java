@@ -7,9 +7,14 @@ import java.net.URI;
 import java.net.URLConnection;
 import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
+import java.util.Locale;
 import java.util.Set;
 
 public final class ListFetcher {
+
+    private static final int CONNECT_TIMEOUT_MILLIS = 10_000;
+
+    private static final int READ_TIMEOUT_MILLIS = 10_000;
 
     public ListFetcher() {
     }
@@ -18,6 +23,8 @@ public final class ListFetcher {
         final HashSet<String> domains = new HashSet<>();
 
         final URLConnection connection = URI.create(url).toURL().openConnection();
+        connection.setConnectTimeout(CONNECT_TIMEOUT_MILLIS);
+        connection.setReadTimeout(READ_TIMEOUT_MILLIS);
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream(), StandardCharsets.UTF_8))) {
             String line;
             while ((line = reader.readLine()) != null) {
@@ -26,7 +33,7 @@ public final class ListFetcher {
                     continue;
                 }
 
-                domains.add(line);
+                domains.add(line.toLowerCase(Locale.ROOT));
             }
         }
 
