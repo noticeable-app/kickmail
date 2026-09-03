@@ -109,6 +109,11 @@ if (!kickMail.hasMxRecord(email)) {
 }
 ```
 
+# Changelog
+
+See [CHANGELOG.md](CHANGELOG.md). Add an entry under `Unreleased` with every change;
+move it under a version heading when releasing.
+
 # Acknowledgments
 
 The following sources are currently in use:
