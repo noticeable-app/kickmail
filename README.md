@@ -2,9 +2,27 @@
 
 A TypeScript and Java library to filter out disposable email addresses based on domain name.
 
-Deny list is aggregated from multiple sources every day and hosted by Cloudflare:
+Deny list is aggregated from multiple sources every 6 hours and hosted by Cloudflare:
 
   - https://kickmail.pages.dev/denylist.txt
+
+## Maintaining our own entries
+
+Two files in `lists/` are merged on top of the upstream sources:
+
+  - `lists/denylist.txt`: domains to block that upstream does not know yet.
+  - `lists/allowlist.txt`: domains to never block, even when an upstream source lists them (false positives).
+
+One domain per line, `#` starts a comment. The allow list wins over everything else.
+Pushing a change to `main` rebuilds and redeploys the published list right away; clients
+pick it up on their next `refresh()`.
+
+To rebuild locally:
+
+```bash
+./gradlew shadowJar
+java -cp build/libs/kickmail-all.jar io.noticeable.kickmail.AggregateLists lists dist/denylist.txt
+```
 
 # Usage Examples
 

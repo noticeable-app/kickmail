@@ -1,6 +1,12 @@
 name: Build and Deploy Lists
 
 on:
+  push:
+    branches: [ "main" ]
+    paths:
+      - "lists/**"
+      - "src/main/java/**"
+      - ".github/workflows/build-deploy-lists.yaml"
   pull_request:
     branches: [ "main" ]
   schedule:
@@ -22,10 +28,8 @@ jobs:
         run: gradle shadowJar
       - name: Create Lists
         run: |
-          mkdir -p dist
-          cd dist
-          java -cp ../build/libs/kickmail-all.jar io.noticeable.kickmail.AggregateLists
-          ls -lh
+          java -cp build/libs/kickmail-all.jar io.noticeable.kickmail.AggregateLists lists dist/denylist.txt
+          ls -lh dist
       - name: Publish
         uses: cloudflare/wrangler-action@v3.15.0
         with:

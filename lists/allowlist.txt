@@ -1,0 +1,3 @@
+# Domains removed from the published deny list even when an upstream source
+# lists them (false positives). One domain per line, lower-case, "#" starts a
+# comment. Takes precedence over both the upstream sources and lists/denylist.txt.
