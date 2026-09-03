@@ -6,7 +6,7 @@ All notable changes to this project are documented here. The format follows
 Two libraries are released from this repository, each with its own version:
 
   - Java `io.noticeable:kickmail`, published to GitHub Packages (Maven).
-  - npm `@noticeable-app/kickmail`, published to GitHub Packages (npm).
+  - npm `@noticeable-app/kickmail`, published to npmjs.com and GitHub Packages (npm).
 
 Releases are tagged `java-<version>` and `npm-<version>`.
 
