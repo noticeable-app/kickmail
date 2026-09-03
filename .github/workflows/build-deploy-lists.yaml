@@ -6,6 +6,8 @@ on:
     paths:
       - "lists/**"
       - "src/main/java/**"
+      - "build.gradle"
+      - "gradle/**"
       - ".github/workflows/build-deploy-lists.yaml"
   pull_request:
     branches: [ "main" ]
@@ -25,7 +27,7 @@ jobs:
           distribution: 'temurin'
           java-version: 25
       - name: Create Shadow JAR
-        run: gradle shadowJar
+        run: ./gradlew shadowJar
       - name: Create Lists
         run: |
           java -cp build/libs/kickmail-all.jar io.noticeable.kickmail.AggregateLists lists dist/denylist.txt
