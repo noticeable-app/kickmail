@@ -7,12 +7,12 @@
   "devDependencies": {
     "eslint-plugin-import": "^2.32.0",
     "eslint-plugin-lit": "^2.3.1",
-    "jest": "^30.5.0",
+    "jest": "^30.5.1",
     "prettier": "^3.9.6",
     "prettier-plugin-organize-imports": "^4.3.0",
     "ts-jest": "^29.4.12",
-    "typescript": "^5.9.3",
-    "typescript-eslint": "^8.68.0"
+    "typescript": "^6.0.3",
+    "typescript-eslint": "^8.69.0"
   },
   "engines": {
     "node": ">=18"
@@ -38,7 +38,7 @@
   },
   "scripts": {
     "build:cjs": "./node_modules/.bin/tsc -m commonjs",
-    "build:mjs": "./node_modules/.bin/tsc -m es2015 -d --moduleResolution node --outDir dist/esm",
+    "build:mjs": "./node_modules/.bin/tsc -m es2015 -d --moduleResolution bundler --outDir dist/esm",
     "build": "npm run clean && npm run lint && npm run build:mjs && npm run build:cjs",
     "clean": "rm -rf dist/",
     "lint": "npx eslint src/main/typescript/**/*",
