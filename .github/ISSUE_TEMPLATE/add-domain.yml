@@ -1,0 +1,48 @@
+name: Block a domain
+description: Report a disposable or abusive email domain that is not in the deny list yet.
+title: "[block] <domain>"
+labels: ["list:block"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Before opening, check the domain is not already listed in
+        https://kickmail.pages.dev/denylist.txt. Accepted entries go to `lists/denylist.txt`
+        and are deployed within minutes of the merge.
+  - type: input
+    id: domain
+    attributes:
+      label: Domain(s)
+      description: One or more domains, comma separated, lower-case, without the mailbox part. Matching is exact, so list subdomains separately.
+      placeholder: kya2.com, mail.kya2.com
+    validations:
+      required: true
+  - type: dropdown
+    id: kind
+    attributes:
+      label: What is it?
+      options:
+        - Temporary / disposable mailbox provider
+        - Alias of an already listed provider (say which one below)
+        - Domain used for fraud or abuse (not necessarily disposable)
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence
+      description: How you know. For example the MX record, the provider's site, the parent domain it aliases, where you saw it abused.
+      placeholder: |
+        dig MX kya2.com -> bccto.cc (rootsh.com temp mail), no A record, seen on 40 fraudulent card attempts in one day.
+    validations:
+      required: true
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Checks
+      options:
+        - label: The domain is not already in the published deny list.
+          required: true
+        - label: This is not a general mail provider (gmail, outlook, a company or ISP domain) that merely had one abusive user.
+          required: true

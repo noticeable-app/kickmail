@@ -39,6 +39,19 @@ exact domain: adding `example.com` does not block `mail.example.com`, list both 
   3. Clients see the change on their next `refresh()` (or restart). No library
      release is needed.
 
+### Reporting an entry to add or remove
+
+Open an issue with one of the templates, they ask for the domain(s) and the evidence needed
+to decide:
+
+  - **Block a domain**: a disposable or abusive domain missing from the list.
+    Goes to `lists/denylist.txt` once accepted.
+  - **Unblock a domain**: a legitimate domain wrongly blocked (false positive).
+    Goes to `lists/allowlist.txt` once accepted.
+
+Check https://kickmail.pages.dev/denylist.txt first to see whether the domain is currently
+blocked. Maintainers can also skip the issue and edit the files directly in a pull request.
+
 To rebuild locally:
 
 ```bash

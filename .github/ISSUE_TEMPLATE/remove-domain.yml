@@ -1,0 +1,40 @@
+name: Unblock a domain
+description: Report a legitimate email domain that is wrongly blocked (false positive).
+title: "[unblock] <domain>"
+labels: ["list:unblock"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Accepted entries go to `lists/allowlist.txt`, which takes priority over every other
+        source, so the domain stays unblocked even if an upstream list keeps it.
+  - type: input
+    id: domain
+    attributes:
+      label: Domain(s)
+      description: One or more domains, comma separated, lower-case, exactly as they appear in the deny list.
+      placeholder: example.com
+    validations:
+      required: true
+  - type: textarea
+    id: why
+    attributes:
+      label: Why it should not be blocked
+      description: Who owns the domain and what it is used for. A link to the organisation's website or the domain's MX setup helps.
+      placeholder: |
+        Corporate mail domain of Acme Corp (https://acme.example), MX on Google Workspace, 200 employees, no public signup.
+    validations:
+      required: true
+  - type: input
+    id: impact
+    attributes:
+      label: Impact
+      description: What is failing because of the block, if known.
+      placeholder: Customer cannot sign up to the dashboard, error "Disposable email addresses are not allowed".
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Checks
+      options:
+        - label: Anyone cannot create a mailbox on this domain without the owner's approval (it is not a public or temporary mailbox service).
+          required: true

@@ -1,0 +1,5 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Published deny list
+    url: https://kickmail.pages.dev/denylist.txt
+    about: Check whether a domain is currently blocked before opening an issue.
