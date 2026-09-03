@@ -8,24 +8,28 @@ Two libraries are released from this repository, each with its own version:
   - Java `io.noticeable:kickmail`, published to GitHub Packages (Maven).
   - npm `@noticeable-app/kickmail`, published to GitHub Packages (npm).
 
+Releases are tagged `java-<version>` and `npm-<version>`.
+
 The published deny list at https://kickmail.pages.dev/denylist.txt is not versioned:
 it is rebuilt every 6 hours and on every push to `main`. Changes to the repo-owned
 entries in `lists/` are recorded under "Deny list".
 
 ## [Unreleased]
 
+### npm (no release planned)
+- Development dependencies only: TypeScript 6.0.3, jest 30.5.1, typescript-eslint 8.69.0.
+  Build output is unchanged. Resolved all Dependabot alerts.
+
+## Java 2.1.1 - 2026-09-03
+
+### Changed
+- Upgraded jmail to 2.2.2 (validation fixes and faster address parsing), Gradle to 9.7.1,
+  shadow plugin to 9.6.1.
+
 ### Deny list
 - Added `lists/denylist.txt` and `lists/allowlist.txt`, merged on top of the upstream
   sources. The allow list has the highest priority, then our deny list, then upstream.
 - Blocked `kya2.com` (alias of the bccto.cc temporary mailbox service).
-
-### Java (next: 2.1.1)
-- Upgraded jmail to 2.2.2 (validation fixes and faster address parsing), Gradle to 9.7.1,
-  shadow plugin to 9.6.1.
-
-### npm (no release planned)
-- Development dependencies only: TypeScript 6.0.3, jest 30.5.1, typescript-eslint 8.69.0.
-  Build output is unchanged. Resolved all Dependabot alerts.
 
 ### Repository
 - `AggregateLists` accepts `[listsDir] [outputFile]` arguments and prints a summary.
