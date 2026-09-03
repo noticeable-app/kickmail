@@ -6,16 +6,38 @@ Deny list is aggregated from multiple sources every 6 hours and hosted by Cloudf
 
   - https://kickmail.pages.dev/denylist.txt
 
-## Maintaining our own entries
+## How the deny list is built
 
-Two files in `lists/` are merged on top of the upstream sources:
+The published list is the union of the upstream sources below, corrected by two
+files kept in this repository under `lists/`:
 
-  - `lists/denylist.txt`: domains to block that upstream does not know yet.
-  - `lists/allowlist.txt`: domains to never block, even when an upstream source lists them (false positives).
+  - `lists/denylist.txt`: domains we block that upstream does not know yet
+    (for example alias domains of a temporary mailbox provider).
+  - `lists/allowlist.txt`: domains we never block, even when an upstream source
+    lists them (false positives such as a customer's real mail domain).
 
-One domain per line, `#` starts a comment. The allow list wins over everything else.
-Pushing a change to `main` rebuilds and redeploys the published list right away; clients
-pick it up on their next `refresh()`.
+Format: one domain per line, lower-case, `#` starts a comment, blank lines ignored.
+
+### Priorities
+
+Sources are applied in this order, highest priority first:
+
+  1. `lists/allowlist.txt`: a domain listed here is always removed from the published list.
+  2. `lists/denylist.txt`: a domain listed here is always added.
+  3. Upstream sources: everything else comes from the three community lists.
+
+So a domain in both our allow and deny lists is allowed, and a domain in our allow
+list is never re-blocked when an upstream source picks it up later. Matching is by
+exact domain: adding `example.com` does not block `mail.example.com`, list both when needed.
+
+### Workflow
+
+  1. Edit `lists/denylist.txt` or `lists/allowlist.txt` and push to `main`.
+  2. The `Build and Deploy Lists` workflow rebuilds and redeploys
+     https://kickmail.pages.dev/denylist.txt within minutes. The same workflow
+     also runs every 6 hours to pick up upstream changes.
+  3. Clients see the change on their next `refresh()` (or restart). No library
+     release is needed.
 
 To rebuild locally:
 
