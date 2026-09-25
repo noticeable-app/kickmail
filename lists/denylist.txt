@@ -2,6 +2,8 @@
 # "#" starts a comment. Published as part of https://kickmail.pages.dev/denylist.txt
 # on every push to main and every 6 hours.
 
+animateany.com
 # Alias of bccto.cc / bccto.me (rootsh.com temporary mailboxes): no website,
 # MX only. Seen on fraudulent payment attempts, 2026-09.
 kya2.com
+wanaivideogenerator.com
