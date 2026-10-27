@@ -3,6 +3,7 @@
 # on every push to main and every 6 hours.
 
 animateany.com
+hidingpost.com
 # Alias of bccto.cc / bccto.me (rootsh.com temporary mailboxes): no website,
 # MX only. Seen on fraudulent payment attempts, 2026-09.
 kya2.com
