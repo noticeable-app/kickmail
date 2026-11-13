@@ -14,7 +14,7 @@ The published deny list at https://kickmail.pages.dev/denylist.txt is not versio
 it is rebuilt every 6 hours and on every push to `main`. Changes to the repo-owned
 entries in `lists/` are recorded under "Deny list".
 
-## Java 2.2.0, npm 1.3.0 - unreleased
+## Java 2.2.0, npm 1.3.0 - 2026-11-13
 
 ### Added
 - A deny list entry also blocks its subdomains: `example.com` blocks `x@mail.example.com`.
@@ -28,11 +28,17 @@ entries in `lists/` are recorded under "Deny list".
   `parseDenyList` and `isDomainDenied`.
 
 ### Repository
-- `AggregateLists` reads the Public Suffix List and writes the `=` and `!` lines.
+- `AggregateLists` reads the Public Suffix List and writes the `=` and `!` lines;
+  `lists/denylist.txt` accepts `=domain` for a domain to block without its subdomains.
+- README explains subdomain matching and the `=` / `!` lines.
 
-### npm
-- Development dependencies only: TypeScript 6.0.3, jest 30.5.1, typescript-eslint 8.69.0.
-  Resolved all Dependabot alerts.
+### Changed
+- Java: dnsjava 3.7.1, Gradle 9.9.1.
+- npm (development only): jest 30.5.2, ts-jest 29.4.15, prettier 3.10.1, typescript-eslint 8.72.2,
+  ESLint 10.14.0 with `@eslint/js` 10.0.1 as direct dependencies; removed the unused
+  `eslint-plugin-import` (it held ESLint at 9); `overrides` for glob 14.0.6 and minimatch 11.0.8.
+  `npm audit` leaves only low findings from deepmerge (used by jest, no fixed version).
+  TypeScript stays on 6.0.3: ts-jest and typescript-eslint do not accept TypeScript 7 yet.
 
 ## Java 2.1.1 - 2026-09-03
 

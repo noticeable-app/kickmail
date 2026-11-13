@@ -15,7 +15,7 @@ java {
 }
 
 dependencies {
-    implementation 'dnsjava:dnsjava:3.6.5'
+    implementation 'dnsjava:dnsjava:3.7.1'
     implementation 'com.sanctionco.jmail:jmail:2.2.2'
 
     testImplementation(platform('org.junit:junit-bom:6.1.3'))
