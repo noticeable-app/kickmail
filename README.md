@@ -16,7 +16,9 @@ files kept in this repository under `lists/`:
   - `lists/allowlist.txt`: domains we never block, even when an upstream source
     lists them (false positives such as a customer's real mail domain).
 
-Format: one domain per line, lower-case, `#` starts a comment, blank lines ignored.
+Format: one domain per line, lower-case, `#` starts a comment, blank lines ignored. A plain
+domain also covers its subdomains; `lists/denylist.txt` accepts `=domain` for a domain to block
+without its subdomains (see [Subdomains and the `=` / `!` exceptions](#subdomains-and-the----exceptions)).
 
 ### Priorities
 
@@ -27,8 +29,43 @@ Sources are applied in this order, highest priority first:
   3. Upstream sources: everything else comes from the three community lists.
 
 So a domain in both our allow and deny lists is allowed, and a domain in our allow
-list is never re-blocked when an upstream source picks it up later. Matching is by
-exact domain: adding `example.com` does not block `mail.example.com`, list both when needed.
+list is never re-blocked when an upstream source picks it up later.
+
+### Subdomains and the `=` / `!` exceptions
+
+A plain entry blocks the domain **and every subdomain of it**: `example.com` blocks
+`x@example.com`, `x@mail.example.com` and `x@a.b.example.com`. Account farms sign up with random
+subdomains of a domain they own (`x@aas.farm.com`, `x@zz.farm.com`...), so list the parent
+domain only, never its subdomains one by one.
+
+Two kinds of lines change that. Each line of the published list is one of:
+
+| Line | Meaning | Example | Blocks | Does not block |
+|---|---|---|---|---|
+| `domain` | the domain and all its subdomains | `farm.com` | `x@farm.com`, `x@aas.farm.com` | |
+| `=domain` | the domain as written only, not its subdomains | `=ddns.net` | `x@ddns.net` | `x@home.ddns.net` |
+| `!domain` | never blocked, nor its subdomains, even under a blocked parent | `!good.farm.com` | | `x@good.farm.com`, `x@mail.good.farm.com` |
+
+How a client decides: it walks up from the domain of the address (`a.b.farm.com`, then
+`b.farm.com`, then `farm.com`) and the first line met decides: a `!` line allows, a plain line
+blocks, a `=` line blocks only when it is the address's own domain. A bare top-level domain
+(`com`) is never looked up.
+
+Where the exceptions come from:
+
+  - `=domain` is written by the build for every entry that is a public suffix
+    (https://publicsuffix.org, ICANN and private sections, such as `ddns.net`, `it.com`,
+    `cloudns.cc`): their subdomains are registered by unrelated people, so blocking them would
+    block whole services. You can also write `=domain` yourself in `lists/denylist.txt` for a
+    domain that is not on the Public Suffix List but whose subdomains belong to other people.
+  - `!domain` is written by the build for every entry of `lists/allowlist.txt` that has a
+    blocked parent. In `lists/allowlist.txt` you write the plain domain (`good.farm.com`),
+    never the `!`.
+
+Compatibility: subdomain matching and the `=` / `!` lines need Java 2.2.0 or npm 1.3.0 and
+later. Older clients compare the domain of the address to each line exactly: plain entries still
+block their own domain, and they read `=` and `!` lines as domains that no address has (so they
+no longer block the few public suffix entries).
 
 ### Workflow
 

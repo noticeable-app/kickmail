@@ -23,6 +23,11 @@ class KickMailTest {
     }
 
     @Test
+    void disposableEmailOnASubdomainOfADeniedDomainIsDetected() {
+        assertTrue(kickMail.isDisposable("qgm6ca@random123.sharklasers.com"));
+    }
+
+    @Test
     void disposableDetectionIgnoresDomainCase() {
         assertTrue(kickMail.isDisposable("qgm6ca@SharkLasers.COM"));
     }

@@ -14,11 +14,25 @@ The published deny list at https://kickmail.pages.dev/denylist.txt is not versio
 it is rebuilt every 6 hours and on every push to `main`. Changes to the repo-owned
 entries in `lists/` are recorded under "Deny list".
 
-## [Unreleased]
+## Java 2.2.0, npm 1.3.0 - unreleased
 
-### npm (no release planned)
+### Added
+- A deny list entry also blocks its subdomains: `example.com` blocks `x@mail.example.com`.
+  Account farms sign up with random subdomains of a domain they own, which exact matching let
+  through one by one.
+- Published list format: `=domain` blocks a domain as written only (entries that are public
+  suffixes, such as `ddns.net`, whose subdomains belong to unrelated people), `!domain` keeps an
+  allow-list entry allowed under a blocked parent. Older clients read both as domains no address
+  has and keep matching the plain entries exactly.
+- Java `DomainList` (parsing and matching) and `PublicSuffixes` (used by the build); npm
+  `parseDenyList` and `isDomainDenied`.
+
+### Repository
+- `AggregateLists` reads the Public Suffix List and writes the `=` and `!` lines.
+
+### npm
 - Development dependencies only: TypeScript 6.0.3, jest 30.5.1, typescript-eslint 8.69.0.
-  Build output is unchanged. Resolved all Dependabot alerts.
+  Resolved all Dependabot alerts.
 
 ## Java 2.1.1 - 2026-09-03
 
