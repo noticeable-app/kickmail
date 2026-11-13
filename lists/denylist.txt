@@ -10,9 +10,11 @@ kya2.com
 panda-shop.xyz
 wanaivideogenerator.com
 
-# Account farms seen in the Ipregistry notice email of 2026-11-13: random subdomains on catch-all
-# Google Workspace domains, and throwaway domains on spam-farm mail servers (lanu.cn, hidesit.net,
-# chacuo.net), almost every address bounced as nonexistent or disabled.
+# Account farms, taken from the hard bounces of the Ipregistry legal notice email sent with Noticeable
+# on 2026-11-13 (dispatch iLV826KMVFfgVteNXi8x6jAkRR2MdW1N, 43,323 recipients): random subdomains of
+# catch-all Google Workspace domains (the parent domains are listed too, matching is exact), and
+# throwaway domains on spam-farm mail servers (lanu.cn, hidesit.net, chacuo.net). Almost every
+# address on them bounced as nonexistent or disabled.
 aas.rehearsalk.com
 bba.youngestsd.com
 bbi.xintaitong.com
@@ -41,12 +43,14 @@ kk.xintaitong.com
 kku.rehearsalk.com
 lanlana.top
 li.rehearsalk.com
+lingeringp.com
 mailxw.com
 mailxw.jp
 mmk.rehearsalk.com
 nnt.rehearsalk.com
 picdv.com
 qaq.xintaitong.com
+rehearsalk.com
 rsa.rehearsalk.com
 uigmail.com
 uui.xintaitong.com
@@ -60,10 +64,12 @@ vvvv.youngestsd.com
 x.xintaitong.com
 xdanae.com
 xex.xintaitong.com
+xintaitong.com
 xt.xintaitong.com
 xu.rehearsalk.com
 xxe.youngestsd.com
 xzx.lingeringp.com
+youngestsd.com
 za.xintaitong.com
 zha.rehearsalk.com
 zz.rehearsalk.com
