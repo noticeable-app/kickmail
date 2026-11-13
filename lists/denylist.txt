@@ -10,11 +10,10 @@ kya2.com
 panda-shop.xyz
 wanaivideogenerator.com
 
-# Account farms, taken from the hard bounces of the Ipregistry legal notice email sent with Noticeable
-# on 2026-11-13 (dispatch iLV826KMVFfgVteNXi8x6jAkRR2MdW1N, 43,323 recipients): random subdomains of
-# catch-all Google Workspace domains (listed by their parent domain, which covers every subdomain), and
-# throwaway domains on spam-farm mail servers (lanu.cn, hidesit.net, chacuo.net). Almost every
-# address on them bounced as nonexistent or disabled.
+# Account farms, seen in the hard bounces of an email sent with Noticeable on 2026-11-13: random
+# subdomains of catch-all Google Workspace domains (listed by their parent domain, which covers every
+# subdomain), and throwaway domains on spam-farm mail servers (lanu.cn, hidesit.net, chacuo.net).
+# Almost every address on them bounced as nonexistent or disabled.
 bkle.uk
 eyou.co.jp
 funvane.com
